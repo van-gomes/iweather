@@ -21,6 +21,7 @@ describe("Component: Input", () => {
 
     //Com get retorna uma execessão caso não encontre e, se assim for o teste irá falhar
     const activityIndicator = screen.getByTestId('activity-indicator');
+    //Com toBeTruthy verificamos se temos o componente sendo renderizado
     expect(activityIndicator).toBeTruthy();
   })
 })
