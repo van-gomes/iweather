@@ -11,6 +11,7 @@ describe("Component: Input", () => {
     render(<Input />)
 
     //Usar o testID para recuperar/buscar elementos dentro do teste
+    //Com query não retorna uma excessão e caso não encontre retorna nulo
     const activityIndicator = screen.queryByTestId('activity-indicator');
     expect(activityIndicator).toBeNull();
   })
@@ -18,6 +19,7 @@ describe("Component: Input", () => {
   it("should  be render with activity indicator if isLoading prop is true", () => {
     render(<Input isLoading />)
 
+    //Com get retorna uma execessão caso não encontre e, se assim for o teste irá falhar
     const activityIndicator = screen.getByTestId('activity-indicator');
     expect(activityIndicator).toBeTruthy();
   })
