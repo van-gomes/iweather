@@ -10,6 +10,7 @@ describe("Component: Input", () => {
 
     render(<Input />)
 
+    //Usar o testID para recuperar/buscar elementos dentro do teste
     const activityIndicator = screen.queryByTestId('activity-indicator');
     expect(activityIndicator).toBeNull();
   })
