@@ -4,6 +4,10 @@ import { Input } from "@components/Input"
 
 describe("Component: Input", () => {
   it("should  be render without activity indicator if isLoading prop is undefined", () => {
+    //verificar o conteúdo que está sendo renderizado no seu componente
+    //const { debug } =  render(<Input />);
+    //debug();
+
     render(<Input />)
 
     const activityIndicator = screen.queryByTestId('activity-indicator');
