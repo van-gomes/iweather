@@ -9,6 +9,7 @@ describe("Component: SelectList", () =>{
       { id: '2', name: 'Campo grande', latitude: 789, longitude: 487 }
     ]
 
+    //Mock/simulação da função onPress
     const onPress = jest.fn();
 
     render(
@@ -19,10 +20,18 @@ describe("Component: SelectList", () =>{
       />
     )
 
+    //Outra possibilidade para usar
+    //const selectedCity = screen.getByText('Campo', { exact: false })
+
+    //getByText procura por um texto que seja igual dentro do componente
     const selectedCity = screen.getByText(/campo/i)
     fireEvent.press(selectedCity)
 
-    expect(onPress).toBeCalledWith(data[1])
+    //Verificar se está forma de verificar a função onPress sendo chamada está passando
+    //expect(onPress).toHaveBeenCalledWith(data[1]);
+
+    //Esta forma de testar a função onPress está deprecada(curso)
+    expect(onPress).toBeCalledWith(data[1]);
   })
 
   it('not should be show options when data props is empty', () => {
@@ -36,6 +45,7 @@ describe("Component: SelectList", () =>{
 
     const options = screen.getByTestId('options')
 
+    //Verificar se o componente tem filhos
     expect(options.children).toHaveLength(0)
   })
 })
