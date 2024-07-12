@@ -17,6 +17,6 @@ describe('Component: NextDays', () => {
       />
     )
 
-    expect(screen.getByText('19/07')).toBeTruthy()
+    expect(screen.getByText('19/07')).toBeTruthy();
   })
 })
