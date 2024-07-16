@@ -5,15 +5,16 @@ import { api } from "@services/api"
 
 describe('Screen: Search', () => {
   it('should be show city option', async () => {
-    jest.spyOn(api, "get").mockResolvedValue({ data: mockCityAPIResponse })
+    jest.spyOn(api, "get").mockResolvedValue({ data: mockCityAPIResponse });
     
-    render(<Search />)
+    render(<Search />);
 
-    const searchInput = screen.getByTestId('search-input')
-    fireEvent.changeText(searchInput, "São Paulo")
+    const searchInput = screen.getByTestId('search-input');
+    // fireEvent é usado para manipular o input
+    fireEvent.changeText(searchInput, "São Paulo");
 
-    const option = await waitFor(() => screen.findByText(/são paulo/i))
+    const option = await waitFor(() => screen.findByText(/são paulo/i));
 
-    expect(option).toBeTruthy()
+    expect(option).toBeTruthy();
   })
 })
