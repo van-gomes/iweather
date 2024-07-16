@@ -7,17 +7,23 @@ import { mockWeatherAPIResponse } from "@__tests__/mocks/api/mockWeatherAPIRespo
 
 describe("Routes", () => {
   it('should be render Search screen when not city selecte', async () => {
+    /* Nestes testes foi feito um render customizado - customRender - com os providers
+      da aplicação */
+      
+    /* Algumas bibliotecas é necessário que sejam mokadas
+     e configuradas no arquivo jest para serem usadas.
+     Para isso é preciso consultar a documentação para saber como fazer. */
     render(
       <Routes />
-    )
+    );
 
-    const title = await waitFor(() => screen.findByText(/^escolha um local/i))
+    const title = await waitFor(() => screen.findByText(/^escolha um local/i));
 
-    expect(title).toBeTruthy()
+    expect(title).toBeTruthy();
   })
 
   it('shoul be render Dashboard screen when has city selected', async () => {
-    jest.spyOn(api, 'get').mockResolvedValue({ data: mockWeatherAPIResponse })
+    jest.spyOn(api, 'get').mockResolvedValue({ data: mockWeatherAPIResponse });
 
     const city = {
       id: '1',
@@ -26,12 +32,12 @@ describe("Routes", () => {
       longitude: 456
     }
     
-    await saveStorageCity(city)
+    await saveStorageCity(city);
 
-    await act(() => waitFor(() => render(<Routes />)))
+    await act(() => waitFor(() => render(<Routes />)));
 
-    const title = screen.getByText(city.name)
+    const title = screen.getByText(city.name);
 
-    expect(title).toBeTruthy()
+    expect(title).toBeTruthy();
   })
 })

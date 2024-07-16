@@ -7,7 +7,7 @@ describe('Context: cityContext', () => {
   it('should be change selected city', async () => {
     // Usamos renderHook para renderizar o hook useCity()
     // O wrapper permite usar o Provider
-    const { result } = renderHook(() => useCity(), { wrapper: CityProvider })
+    const { result } = renderHook(() => useCity(), { wrapper: CityProvider });
 
     // waitFor para aguardar o retorno de uma função assíncrona - handleChanceCity
     // act realiza uma ação (neste caso da atualização do estado de getStorageCity() - assíncrona)
@@ -16,9 +16,9 @@ describe('Context: cityContext', () => {
       name: 'São Paulo',
       latitude: 123,
       longitude: 456
-    })))
+    })));
 
     // city? porque pode ser nulo
-    expect(result.current.city?.name).toBe('São Paulo')
+    expect(result.current.city?.name).toBe('São Paulo');
   })
 })
