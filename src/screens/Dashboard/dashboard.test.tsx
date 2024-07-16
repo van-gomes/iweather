@@ -21,35 +21,39 @@ describe("Screen: Dashboard", () => {
   it('should be show city weather', async () => {
     jest.spyOn(api, 'get').mockResolvedValue({ data: mockWeatherAPIResponse });
 
-    render(<Dashboard />)
+    render(<Dashboard />);
 
     const cityName = await waitFor(() => screen.findByText(/rio do sul/i));
-    expect(cityName).toBeTruthy() 
+    expect(cityName).toBeTruthy();
   })
 
   it('should be show another selected weather city', async () =>{
+    /*
+      1 - Busca as informações do tempo/clima da cidade que já estava selecionada
+      2 - Busca as informações da nova cidade digitada pelo usuário
+      3 - Busca as informações do tempo/clima da nova cidade selecionada
+    */
 
     jest.spyOn(api, 'get')
       .mockResolvedValueOnce({ data: mockWeatherAPIResponse })
       .mockResolvedValueOnce({ data: mockCityAPIResponse })
       .mockResolvedValueOnce({ data: mockWeatherAPIResponse })
 
-    render(<Dashboard />)
+    render(<Dashboard />);
 
-    await waitForElementToBeRemoved(() => screen.queryByTestId('loading'))
+    await waitForElementToBeRemoved(() => screen.queryByTestId('loading'));
 
     const cityName = 'São Paulo'
 
     await waitFor(() => act(() => {
       const search = screen.getByTestId('search-input')
       fireEvent.changeText(search, cityName)
-    }))
+    }));
 
     await waitFor(() => act(() => {
       fireEvent.press(screen.getByText(cityName, { exact: false }))
-    }))
+    }));
 
-    expect(screen.getByText(cityName, { exact: false })).toBeTruthy()
-
+    expect(screen.getByText(cityName, { exact: false })).toBeTruthy();
   })
 })
